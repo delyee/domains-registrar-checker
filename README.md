@@ -1,8 +1,8 @@
 ## Example:
 ```
-➜  multithread-dns-resolve git:(main) ✗ python3 main.py domains-from-urlhaus_uniq-sort.txt
-Threads (press Enter(6) or type "32"):>
-Registrar (press Enter(RU-CENTER) or type "REG-RU"):>
+➜  multithread-domain-registrar-checker git:(main) ✗ python3 main.py domains-from-urlhaus_uniq-sort.txt
+[Threads] press Enter(6) or type 32 :>
+[Registrar] press Enter(RU-CENTER) or type REG-RU :>
 [!] 771 elements loaded
 [!] Wait starting threads...
 [%] Scanned: 6 | Queue size: 757 | Active threads: 8

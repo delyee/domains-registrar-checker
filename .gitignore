@@ -1,4 +1,6 @@
 
 test_domains.txt
-bads.txt
+errors.txt
 goods.txt
+success.txt
+test.py

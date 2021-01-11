@@ -12,7 +12,7 @@ uselessQueue = Queue()
 COUNTER = 0
 THREADS = int(input('[Threads] press Enter(6) or type 32 :> ') or 6)
 REGISTRAR = input('[Registrar] press Enter(RU-CENTER) or type REG-RU :> ') or 'RU-CENTER'
-GOODS, BADS = [], []
+SUCCESS, ERRORS = [], []
 
 
 class UselessClass(threading.Thread):
@@ -41,7 +41,7 @@ class UselessClass(threading.Thread):
             # 'RU-CENTER-RU' of responce != 'RU-CENTER' in user input
             if REGISTRAR in _.__dict__.get('registrar'):
                 with lock:
-                    GOODS.append(_elem)
+                    SUCCESS.append(_elem)
             else:
                 pass
                 #print('Bad registrar:', _.get('registrar'), _elem)
@@ -49,14 +49,14 @@ class UselessClass(threading.Thread):
         # (UnknownTld, WhoisCommandFailed)
         except Exception as e:
             with lock:
-                BADS.append(_elem)
+                ERRORS.append(_elem)
             pass
 
 with open(argv[1], 'r') as __:
     for _ in __.readlines():
         uselessQueue.put(_)
 
-print('[!] {} domains loaded\n[!] Wait starting threads...'.format(uselessQueue.qsize()))
+print('\n[!] {} domains loaded\n[!] Wait starting threads...'.format(uselessQueue.qsize()))
 
 for _ in range(THREADS):
     __ = UselessClass()
@@ -74,11 +74,11 @@ except KeyboardInterrupt:
     pass
 
 finally:
-    with open('goods.txt', 'w') as goods_file:
-        goods_file.writelines(GOODS)
-    with open('bads.txt', 'w') as bads_file:
-        bads_file.writelines(BADS)
+    with open('success.txt', 'w') as success_file:
+        success_file.writelines(SUCCESS)
+    with open('errors.txt', 'w') as errors_file:
+        errors_file.writelines(ERRORS)
     
-    print('[+] Len of success domains:', len(GOODS))
+    print('\n[+] Success domains:', len(SUCCESS))
 
 # killmeforthiscode ._.

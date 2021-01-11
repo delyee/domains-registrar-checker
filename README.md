@@ -17,9 +17,94 @@
 ```
 
 ## Output:
-- goods.txt
-- bads.txt
+- success.txt
+- errors.txt
 
 ## tips:
 - auto-increment resolve delay
 - catch KeyboardInterrupt and save all results
+
+## ccTLD & TLD support list
+~~~
+ccTLD
+- uz
+- ac.uk
+- ar
+- at
+- be
+- br
+- ca
+- co
+- co.jp
+- com.au
+- cl
+- cn
+- cz
+- de
+- eu
+- fr
+- it
+- ir
+- jp
+- kr
+- lv
+- lt
+- mx
+- nz
+- pl
+- ru
+- uk
+- us
+- mx
+- br
+- sh
+- id
+- tv
+- cc
+- nyc
+- pw
+- рф (xn--p1ai)
+- in
+- ua
+
+TLD
+- download
+- biz
+- edu
+- education
+- com
+- download
+- info
+- me
+- mobi
+- name
+- net
+- ninja
+- nyc
+- online
+- org
+- io
+- xyz
+- tel
+- online
+- wiki
+- press
+- pharmacy
+- rest
+- security
+- site
+- space
+- store
+- tech
+- tel
+- theatre
+- tickets
+- video
+- website
+- club
+- work
+- bank
+- ca
+- mu
+- rw
+~~~

@@ -1,6 +1,8 @@
 ## Example:
 ```
+➜  registrar-checker git:(main) ✗ pip3 install --user -r requirements.txt
 ➜  registrar-checker git:(main) ✗ python3 main.py domains-from-urlhaus_uniq-sort.txt
+
 [Threads] press Enter(6) or type 32 :>
 [Registrar] press Enter(RU-CENTER) or type REG-RU :>
 

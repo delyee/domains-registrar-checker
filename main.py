@@ -78,13 +78,12 @@ try:
     while not uselessQueue.empty():
         print('[%] Scanned: {} | Queue size: {} | Active threads: {}'.format(COUNTER, uselessQueue.qsize(), threading.active_count()-1))
         time_sleep(5)
+    uselessQueue.join()
 
 except KeyboardInterrupt:
     pass
 
 finally:
-    uselessQueue.join()
-
     with open('goods.txt', 'w') as goods_file:
         goods_file.writelines(GOODS)
     with open('bads.txt', 'w') as bads_file:

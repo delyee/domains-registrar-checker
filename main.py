@@ -10,7 +10,7 @@ from whois.exceptions import UnknownTld, WhoisCommandFailed
 lock = threading.Lock()
 uselessQueue = Queue()
 COUNTER = 0
-THREADS = input('Threads (press Enter(6) or type "32"):> ') or 6
+THREADS = int(input('Threads (press Enter(6) or type "32"):> ') or 6)
 REGISTRAR = input('Registrar (press Enter(RU-CENTER) or type "REG-RU"):> ') or 'RU-CENTER'
 GOODS, BADS = [], []
 

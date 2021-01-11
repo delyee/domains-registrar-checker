@@ -4,21 +4,20 @@ from sys import argv
 from time import sleep as time_sleep
 from whois import query
 from random import choice as random_choice
-from whois.exceptions import UnknownTld, WhoisCommandFailed
+#from whois.exceptions import UnknownTld, WhoisCommandFailed
 
 
 lock = threading.Lock()
 uselessQueue = Queue()
 COUNTER = 0
-THREADS = int(input('Threads (press Enter(6) or type "32"):> ') or 6)
-REGISTRAR = input('Registrar (press Enter(RU-CENTER) or type "REG-RU"):> ') or 'RU-CENTER'
+THREADS = int(input('[Threads] press Enter(6) or type 32 :> ') or 6)
+REGISTRAR = input('[Registrar] press Enter(RU-CENTER) or type REG-RU :> ') or 'RU-CENTER'
 GOODS, BADS = [], []
 
 
 class UselessClass(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
-            # init class section: edit if you need
     
     def run(self):
         while True:
@@ -32,14 +31,14 @@ class UselessClass(threading.Thread):
     def scanner(self, _elem):
         try:
             __rec_counter = 1
-            # todo: whois.CACHE_FILE, query(cache_file=None)
-            # _ = query(cache_file=open('CACHE_FILE', 'rw'))
+            # todo: custom whois.CACHE_FILE, query(cache_file=None)
             _ = query(_elem.strip(), force=0, slow_down=random_choice([1,2]))
 
             while _ == None and __rec_counter < 3:
                 __rec_counter += 1
                 _ = query(_elem.strip(), force=1, slow_down=random_choice([3,4])) # 5,6,7
 
+            # 'RU-CENTER-RU' of responce != 'RU-CENTER' in user input
             if REGISTRAR in _.__dict__.get('registrar'):
                 with lock:
                     GOODS.append(_elem)
@@ -52,31 +51,22 @@ class UselessClass(threading.Thread):
             with lock:
                 BADS.append(_elem)
             pass
-            #print(_elem, file=open('bads.txt', 'w'))
-            ##### print(type(e).__name__, _elem)
-            #####print(type(e).__name__)
-        '''except WhoisCommandFailed as e:
-                                    with lock:
-                                        BADS.append(_elem)'''
-            #print(type(e).__name__, _elem)
-            #print(e, '\n=======================\n', _elem)
 
-# rewrite this bullshit
-with open(argv[1], 'r') as f:
-    for i in f.readlines():
-        uselessQueue.put(i)
+with open(argv[1], 'r') as __:
+    for _ in __.readlines():
+        uselessQueue.put(_)
 
-print('[!] {} elements loaded\n[!] Wait starting threads...'.format(uselessQueue.qsize()))
+print('[!] {} domains loaded\n[!] Wait starting threads...'.format(uselessQueue.qsize()))
 
-for i in range(THREADS):
-    t = UselessClass()
-    t.setDaemon(True)
-    t.start()
+for _ in range(THREADS):
+    __ = UselessClass()
+    __.setDaemon(True)
+    __.start()
 
 
 try:
     while not uselessQueue.empty():
-        print('[%] Scanned: {} | Queue size: {} | Active threads: {}'.format(COUNTER, uselessQueue.qsize(), threading.active_count()-1))
+        print('[%] Processed: {} | Queue size: {} | Active threads: {}'.format(COUNTER, uselessQueue.qsize(), threading.active_count()-1))
         time_sleep(5)
     uselessQueue.join()
 
